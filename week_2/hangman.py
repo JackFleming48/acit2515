@@ -28,13 +28,13 @@ def displayGame(game, letters, strikes, guess_list, word_to_guess, incorrect_gue
 
             if strikes >= 7:
                 strikeCount(strikes, game)
-                print(f"Game Over!\nThe word was {"".join(word_to_guess)}")
+                print(f"Game Over!\nThe word was {''.join(word_to_guess)}")
                 break
 
 
 
         if "_" not in letters:
-            print(f"You Win!\nThe word was {"".join(word_to_guess)}")
+            print(f"You Win!\nThe word was {''.join(word_to_guess)}")
             break
 
         
