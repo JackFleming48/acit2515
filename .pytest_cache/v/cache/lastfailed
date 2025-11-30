@@ -51,5 +51,9 @@
   "wordle_starter/tests/test_wordle_word.py": true,
   "week_7/tests/test_game_runner_hangman.py": true,
   "week_7/tests/test_hangman_game.py": true,
-  "week_7/tests/test_hangman_word.py": true
+  "week_7/tests/test_hangman_word.py": true,
+  "wordle_starter/tests/test_game_runner_hangman.py": true,
+  "wordle_starter/tests/test_game_runner_wordle.py": true,
+  "wordle_starter/tests/test_hangman_game.py": true,
+  "wordle_starter/tests/test_hangman_word.py": true
 }

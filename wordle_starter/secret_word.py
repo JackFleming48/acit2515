@@ -72,7 +72,10 @@ class SecretWord(abc.ABC):
             str:
                 subclass specific version of formatted SecretWord value
         """
-        pass
+        out_string = ""
+
+        for letter in self._word:
+            out_string += letter + " "
 
     @abc.abstractmethod
     def show_letters(self, guess: str | list[str]) -> str:
@@ -87,7 +90,16 @@ class SecretWord(abc.ABC):
             str:
                 string representation of guess result
         """
-        pass
+        out_string = ""
+
+        guesses = "".join(guess).upper()
+
+        for letter in self._word:
+            if letter in guesses:
+                out_string += letter
+            else:
+                out_string += "_"
+            out_string += " "
 
     @classmethod
     @abc.abstractmethod
@@ -100,8 +112,15 @@ class SecretWord(abc.ABC):
                 randomly chosen word from a file specified by the
                 `WORD_FILE_PATH`
         """
-        pass
+        word = ""
 
+        with open(cls.WORD_FILE_PATH, "r") as words_file:
+            words = words_file.readlines()
+            if len(words) == 0:
+                raise ValueError(f"The {cls.WORD_FILE_PATH} file is empty")
+            else:
+                word = random.choice(words).strip().upper()
+        return word
 
 class WordleWord(SecretWord):
     """A secret word for the game Wordle.
@@ -257,4 +276,41 @@ class HangmanWord(SecretWord):
     """Represents a secret word for the game hangman. Players can guess letters
     to reveal the word used and check if their guess is the secret word
     """
-    pass
+    def __init__(self, word=None):
+        super().__init__(word)
+        if word is None:
+            self._word = self.random_word()
+        else:
+            self._word = word.upper()
+
+    @property
+    def formatted_word(self):
+        return " ".join(self._word)
+    
+    def show_letters(self, guess):
+        
+        out_string = ""
+        guesses = "".join(guess).upper()
+
+        
+        for letter in self._word:
+            if letter in guesses:
+                out_string += letter
+            else:
+                out_string += "_"
+            out_string += " "
+
+        # Remove the last space extraneous space to match the test cases
+        return out_string.strip()
+    
+    def check_letters(self, guesses):
+        # Normalize guesses (Test bypasses word_game.guess logic)
+        guesses = [g.upper() for g in guesses]
+        for letter in self._word:
+            if letter.upper() not in guesses:
+                return False
+        return True
+    
+    @classmethod
+    def random_word(cls):
+        return super().random_word()
