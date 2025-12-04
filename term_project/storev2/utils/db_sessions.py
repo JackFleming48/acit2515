@@ -3,9 +3,14 @@ from utils.loaders.loadCategory import LoadCategories
 from utils.loaders.loadUsers import LoadUsers
 from utils.loaders.loadProduct import LoadProducts
 
-categories = LoadCategories("products.csv", read_csv)
-categories.load()
-users = LoadUsers("customers.csv", read_csv)
-users.load()
-products = LoadProducts("products.csv", read_csv)
-products.load()
+def load_categories():
+    categories = LoadCategories("products.csv", read_csv)
+    categories.load()
+
+def load_users():
+    users = LoadUsers("customers.csv", read_csv)
+    users.load()
+    
+def load_products():
+    products = LoadProducts("products.csv", read_csv)
+    products.load()

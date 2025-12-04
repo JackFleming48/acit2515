@@ -1,4 +1,5 @@
 from db import db
+from datetime import datetime
 
 class User(db.Model):
     __tablename__ = "users"
@@ -7,7 +8,7 @@ class User(db.Model):
     name = db.mapped_column(db.String, nullable=False)
     phone = db.mapped_column(db.Integer, nullable=False)
     password = db.mapped_column(db.VARCHAR(255), nullable=False)
-    create_date = db.mapped_column(db.DATETIME, default=db.datetime.now, nullable=False)
+    create_date = db.mapped_column(db.DateTime, default=datetime.now, nullable=False)
 
     def __str__(self):
         return f"ID: {self.id} | Name: {self.name} | PASSWORD | Ph.: {self.phone} | Create Date: {self.create_date}"

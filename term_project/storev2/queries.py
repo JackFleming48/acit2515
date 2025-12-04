@@ -1,8 +1,8 @@
-from utils.database import Session
+from db import db
 from utils.models import Category, Product, User
 from sqlalchemy import select
 
-session = Session()
+session = db.session
 
 def get_p_out_of_stock(session):
     stmt = select(Product).where(Product.inventory == 0)

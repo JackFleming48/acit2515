@@ -4,13 +4,15 @@ from db import db
 
 def create_app():
     app = Flask(__name__)
-    app.instance_path = Path("/data/database.db").resolve()
+    app.instance_path = Path(".").resolve()
 
-    ROOT_DIR = Path(__file__).resolve().parent.parent
+    ROOT_DIR = Path(__file__).resolve().parent
     DB_PATH = ROOT_DIR / "data" / "database.db"
-
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///{DB_PATH}"
+    app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DB_PATH}"
     db.init_app(app)
+
+    from routes import register_blueprints
+    register_blueprints(app)
 
     @app.route("/")
     def home():

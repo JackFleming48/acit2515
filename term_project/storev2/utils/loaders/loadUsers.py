@@ -1,12 +1,12 @@
 from utils.loaders.loadBase import Loader
-from utils.database import Session
-from utils.models import User
+from db import db
+from models.users import User
 from sqlalchemy import select
 
 class LoadUsers(Loader):
     def __init__(self, file_name, read_csv):
         super().__init__(file_name, read_csv)
-        self._session = Session()
+        self._session = db.session
 
     def load(self):
         data = self._get_data()
