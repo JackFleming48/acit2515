@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-center mt-4">
+    <div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="">
+    <div class="card-body">
+        <h5 class="card-title">{{ user.name }}</h5>
+        <p class="card-text">{{ user.name }}'s Information</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Phone Number: {{ user.phone }}</li>
+        <li class="list-group-item">Account Creation Date: {{ user.create_date }}</li>
+    </ul>
+    </div>
+</div>
+{% endblock %}
+
+
