@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">created</th>
+      <th scope="col">completed</th>
+      <th scope="col">customer ID</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for order in orders %}
+    <tr>
+      <th scope="row">
+        <a href="{{ url_for('order.order_id', id=order.id)}}">{{ order.id }}</a>
+    </th>
+      <td>{{ order.created }}</td>
+      <td>{{ order.completed }}</td>
+      <td>{{ order.amount }}</td>
+      <td>{{ order.customer_id }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

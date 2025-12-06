@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-center mt-4">
+    <div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="">
+    <div class="card-body">
+        <h5 class="card-title">{{ order.id }}</h5>
+        <p class="card-text">The order was created {{ order.created }}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Order Status: {{ order.completed }}</li>
+        <li class="list-group-item">Customer ID: {{ order.customer_id }}</li>
+        <li class="list-group-item">Amount: {{ order.amount }}</li>
+    </ul>
+    <form method="post" action="{{ url_for('order.complete_order', id=order.id) }}">
+        <button type="submit" class="btn btn-primary">
+            Complete Order
+        </button>
+    </form>
+    </div>
+</div>
+{% endblock %}
